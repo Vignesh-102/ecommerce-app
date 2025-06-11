@@ -1,0 +1,46 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.category {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.name {
+  font-size: 1.1rem;
+  margin: 0.3rem 0 0.7rem;
+  color: #222;
+  flex-grow: 1;
+}
+
+.price {
+  font-weight: bold;
+  color: #1a8917;
+  margin-bottom: 1rem;
+}
+
+.viewLink {
+  align-self: flex-start;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.viewLink:hover {
+  color: #004999;
+}
