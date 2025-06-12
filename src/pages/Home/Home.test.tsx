@@ -2,7 +2,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import Home from './Home';
 
-jest.mock('../components/ProductCard', () => ({ product }: any) => (
+jest.mock('../../components/Product card/ProductCard', () => ({ product }: any) => (
   <div data-testid="mock-product">{product.name}</div>
 ));
 
