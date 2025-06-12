@@ -8,7 +8,7 @@ const rootElement = document.getElementById('root')!;
 
 createRoot(rootElement).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/ecommerce-app'>
       <App />
     </BrowserRouter>
   </StrictMode>,

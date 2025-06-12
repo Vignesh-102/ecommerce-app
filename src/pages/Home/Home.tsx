@@ -45,7 +45,7 @@ export default function Home() {
         };
         fetchProducts();
     },[])
-    if (loading) return <p>Loading products...</p>;
+    if (loading) return <p>Loading products from backend...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
