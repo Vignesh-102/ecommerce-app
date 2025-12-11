@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.8rem 2rem;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .logo {
