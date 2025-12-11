@@ -1,6 +1,6 @@
 // Home.test.tsx
 import { render, screen, waitFor } from '@testing-library/react';
-import Home from './Home';
+import Home from './home';
 
 jest.mock('../../components/Product card/ProductCard', () => ({ product }: any) => (
   <div data-testid="mock-product">{product.name}</div>

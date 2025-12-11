@@ -1,58 +1,95 @@
 import { useEffect, useState } from "react";
-import styles from './Home.module.css';
-import ProductCard from "../../components/Product card/ProductCard";
+import styles from "./Home.module.css";
+import ProductCard from "../../components/product card/productCard";
+import { getBestDealProducts, getProductsByCategory } from "../../services/productService";
+import { useParams, useSearchParams } from "react-router-dom";
 
 interface Product {
-    category: string
-    name: string
-    id: number
-    price: number
+  category: string;
+  name: string;
+  id: number;
+  price: number;
+  image: string;
 }
 
 export default function Home() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
+  const { slug } = useParams();
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search")?.trim().toLowerCase() || "";
 
-    useEffect(() => {
-        const query = `
-        query Products {
-            products {
-                category
-                name
-                id
-                price
-            }
-        }`;
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-        const fetchProducts = async () => {
-            try {
-                const res = await fetch('https://ecommerce-backend-1s9y.onrender.com', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ query }),
-                });
-                const json = await res.json();
-                if (json.errors) {
-                    throw new Error(json.errors[0].message);
-                }
-                setProducts(json.data.products);
-            } catch (err:any) {
-                setError(err.message || 'Something went wrong');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    },[])
-    if (loading) return <p>Loading products from backend...</p>;
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // -----------------------------
+  // 1️⃣ Fetch products (based on slug)
+  // -----------------------------
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        let data;
+
+        if (slug) {
+          data = await getProductsByCategory(slug);
+        } else {
+          data = await getBestDealProducts();
+        }
+
+        setProducts(data);
+        setFilteredProducts(data); // preserve original
+      } catch (err: any) {
+        setError(err.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [slug]);
+
+  // -----------------------------
+  // 2️⃣ Apply search filter whenever:
+  //    - searchTerm changes
+  //    - products change (fresh fetch)
+  // -----------------------------
+  useEffect(() => {
+    const normalized = searchTerm.toLowerCase();
+
+    if (!normalized) {
+      setFilteredProducts(products); // restore full list
+      return;
+    }
+
+    setFilteredProducts(
+      products.filter((p) =>
+        p.name.toLowerCase().includes(normalized)
+      )
+    );
+  }, [searchTerm, products]);
+
+  // -----------------------------
+  // UI
+  // -----------------------------
+  if (loading) return <p>Loading products from backend...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className={styles.grid}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className={styles.container}>
+      <h2 className={styles.sectionTitle}>
+        {slug ? slug.toUpperCase() : "Best Deals for You"}
+      </h2>
+
+      <div className={styles.grid}>
+        {filteredProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+
+        {filteredProducts.length === 0 && (
+          <p className={styles.noResults}>No products found</p>
+        )}
+      </div>
     </div>
   );
 }

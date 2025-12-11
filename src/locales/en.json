@@ -1,0 +1,43 @@
+{
+  "layout": {
+    "logo": "Namma Store",
+    "searchPlaceholder": "Search by product name",
+    "cart": "Cart",
+    "account": "Account",
+    "categories": {
+      "mobiles": "Mobiles",
+      "fashion": "Fashion",
+      "electronics": "Electronics",
+      "appliances": "Appliances",
+      "home": "Home",
+      "books": "Books"
+    },
+    "footer": {
+      "about": {
+        "title": "About",
+        "links": {
+          "aboutUs": "About Us",
+          "careers": "Careers",
+          "press": "Press"
+        }
+      },
+      "help": {
+        "title": "Help",
+        "links": {
+          "payments": "Payments",
+          "shipping": "Shipping",
+          "returns": "Returns"
+        }
+      },
+      "policies": {
+        "title": "Policies",
+        "links": {
+          "privacy": "Privacy Policy",
+          "terms": "Terms of Use",
+          "security": "Security"
+        }
+      },
+      "copy": "© 2025 My eCommerce Store. All rights reserved."
+    }
+  }
+}
