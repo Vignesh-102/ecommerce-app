@@ -46,7 +46,6 @@
   margin-top: 10px;
 }
 
-/* Stylish View Details Button */
 .viewLink {
   padding: 8px 14px;
   background: #0080ff;
@@ -62,7 +61,6 @@
   background: #006bd6;
 }
 
-/* Add to Cart Button */
 .cartBtn {
   padding: 8px 14px;
   background: #ff6b00;
@@ -79,7 +77,6 @@
   background: #e65f00;
 }
 
-/* Popup */
 .popup {
   position: absolute;
   top: 10px;

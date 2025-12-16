@@ -6,13 +6,11 @@ const USE_MOCK = import.meta.env.VITE_USE_MOCK_DATA === "true";
 
 export async function getBestDealProducts() {
   if (USE_MOCK) {
-    // Simulate network delay
     return new Promise((resolve) =>
       setTimeout(() => resolve(mockBestDealProducts), 400)
     );
   }
 
-  // LIVE GRAPHQL QUERY
   const query = `
     query Products {
       products {

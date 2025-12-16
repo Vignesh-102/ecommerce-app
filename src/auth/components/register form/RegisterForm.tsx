@@ -16,7 +16,6 @@ export function RegisterForm() {
 
   const onSubmit = (data: SignupFormData) => {
     console.log("Signup Form Data:", data);
-    // TODO: signup logic here
   };
 
   return (

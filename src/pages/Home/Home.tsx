@@ -23,9 +23,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // -----------------------------
-  // 1️⃣ Fetch products (based on slug)
-  // -----------------------------
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -38,7 +36,7 @@ export default function Home() {
         }
 
         setProducts(data);
-        setFilteredProducts(data); // preserve original
+        setFilteredProducts(data);
       } catch (err: any) {
         setError(err.message || "Something went wrong");
       } finally {
@@ -49,16 +47,12 @@ export default function Home() {
     fetchProducts();
   }, [slug]);
 
-  // -----------------------------
-  // 2️⃣ Apply search filter whenever:
-  //    - searchTerm changes
-  //    - products change (fresh fetch)
-  // -----------------------------
+
   useEffect(() => {
     const normalized = searchTerm.toLowerCase();
 
     if (!normalized) {
-      setFilteredProducts(products); // restore full list
+      setFilteredProducts(products);
       return;
     }
 

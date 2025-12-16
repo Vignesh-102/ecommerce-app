@@ -1,4 +1,3 @@
-/* Header / Navbar */
 .header {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
@@ -67,7 +66,6 @@
   gap: 0.3rem;
 }
 
-/* Categories Bar */
 .categories {
   background: #f8f8f8;
   padding: 0.6rem 2rem;
